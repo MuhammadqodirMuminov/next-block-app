@@ -17,7 +17,13 @@ export default function Home() {
 			</Head>
 			<main>
 				<Hero />
-				<Box sx={{ display: "flex", padding: "20px", gap: "20px" }}>
+				<Box
+					sx={{
+						display: "flex",
+						flexDirection: { xs: "column", md: "row" },
+						padding: "20px",
+						gap: "20px",
+					}}>
 					<Sidebar />
 					<Content />
 				</Box>

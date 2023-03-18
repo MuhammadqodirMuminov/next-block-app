@@ -51,8 +51,15 @@ const Hero = () => {
 										paddingLeft: { xs: "10px", sm: "50px" },
 									}}
 									zIndex={999}>
-									<Typography variant="h2">{item.title}</Typography>
-									<Typography variant="h5">{item.exerpt}</Typography>
+									<Typography
+										sx={{ fontSize: { xs: "30px", md: "50px" } }}>
+										{item.title}
+									</Typography>
+                  <Typography
+                    color={'gray'}
+										sx={{ fontSize: { xs: "20px", md: "25px" } }}>
+										{item.exerpt}
+									</Typography>
 									<Box
 										sx={{
 											display: "flex",

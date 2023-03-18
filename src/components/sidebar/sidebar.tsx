@@ -29,12 +29,11 @@ const data = [
 
 const Sidebar = () => {
 	return (
-		<Box width={"30%"}>
+		<Box width={{ xs: "100%", md: "30%" }}>
 			<Box
 				position={"sticky"}
 				top={"100px"}
-        sx={{ transition: "all .3s ease" }}>
-        
+				sx={{ transition: "all .3s ease" }}>
 				<Box
 					padding={"20px"}
 					border={"1px solid gray"}
@@ -59,8 +58,8 @@ const Sidebar = () => {
 							</Fragment>
 						))}
 					</Box>
-        </Box>
-        
+				</Box>
+
 				<Box
 					sx={{ marginTop: "20px" }}
 					padding={"20px"}
