@@ -72,8 +72,8 @@ const Navbar = ({ window }: Props) => {
 
 	return (
 		<Box height={"10vh"} sx={{ display: "flex" }}>
-			<AppBar component="nav">
-				<Toolbar>
+			<AppBar sx={{ height: "10vh",backgroundColor: "#141414" }} component="nav">
+				<Toolbar sx={{ height: "10vh" }}>
 					<IconButton
 						color="inherit"
 						aria-label="open drawer"
@@ -97,7 +97,6 @@ const Navbar = ({ window }: Props) => {
 						</Typography>
 					</Box>
 
-					
 					<Box sx={{ display: { xs: "none", sm: "block" } }}>
 						{navItems.map((item) => (
 							<Button key={item.route} sx={{ color: "#fff" }}>

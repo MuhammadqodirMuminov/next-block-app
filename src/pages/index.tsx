@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { Hero } from "src/components";
 import Layout from "src/layout/layout";
 
 export default function Home() {
@@ -14,7 +15,7 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main>
-				<h1>hello</h1>
+				<Hero/>
 			</main>
 		</Layout>
 	);
