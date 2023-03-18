@@ -1,5 +1,6 @@
+import { Box } from "@mui/material";
 import Head from "next/head";
-import { Hero } from "src/components";
+import { Content, Hero, Sidebar } from "src/components";
 import Layout from "src/layout/layout";
 
 export default function Home() {
@@ -15,7 +16,11 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main>
-				<Hero/>
+				<Hero />
+				<Box sx={{ display: "flex", padding: "20px", gap: "20px" }}>
+					<Sidebar />
+					<Content />
+				</Box>
 			</main>
 		</Layout>
 	);
