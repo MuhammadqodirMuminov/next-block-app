@@ -21,4 +21,7 @@ export interface BlogType {
 	image: {
 		url: string;
 	};
+	description: {
+		text: string;
+	};
 }

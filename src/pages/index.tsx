@@ -3,12 +3,11 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { Content, Hero, Sidebar } from "src/components";
 import { BlogType } from "src/interfaces/blogs.props";
+import { Categorytype } from "src/interfaces/category.interface";
 import Layout from "src/layout/layout";
 import { BlogService } from "src/services/blog.service";
 
-export default function Home({ blogs }: HomeProps) {
-	console.log(blogs);
-
+export default function Home({ blogs, lastBlog, categories }: HomeProps) {
 	return (
 		<Layout>
 			<Head>
@@ -21,7 +20,7 @@ export default function Home({ blogs }: HomeProps) {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main>
-				<Hero />
+				<Hero blogs={blogs.slice(0,3)} />
 				<Box
 					sx={{
 						display: "flex",
@@ -29,8 +28,8 @@ export default function Home({ blogs }: HomeProps) {
 						padding: "20px",
 						gap: "20px",
 					}}>
-					<Sidebar />
-					<Content />
+					<Sidebar lastBlog={lastBlog} categories={categories} />
+					<Content blogs={blogs} />
 				</Box>
 			</main>
 		</Layout>
@@ -39,14 +38,20 @@ export default function Home({ blogs }: HomeProps) {
 
 export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
 	const blogs = await BlogService.getAllBlogs();
+	const lastBlog = await BlogService.getLatestBlog();
+	const categories = await BlogService.Category();
 
 	return {
 		props: {
 			blogs,
+			lastBlog,
+			categories,
 		},
 	};
 };
 
 interface HomeProps {
-	blogs: BlogType;
+	blogs: BlogType[];
+	lastBlog: BlogType[];
+	categories: Categorytype[];
 }

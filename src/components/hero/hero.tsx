@@ -4,9 +4,10 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { format } from "date-fns";
+import { HeroProps } from "./hero.props";
+import { esTimateTimesRead } from "src/helpers/colculateReadtime";
 
-
-const Hero = () => {
+const Hero = ({ blogs }: HeroProps) => {
 	return (
 		<Box width={"100%"} height={"70vh"} sx={{ backgroundColor: "red" }}>
 			<Carousel
@@ -16,8 +17,8 @@ const Hero = () => {
 						items: 1,
 					},
 				}}>
-				{data.map((item, i) => (
-					<Box key={i}>
+				{blogs.map((item) => (
+					<Box key={item.id}>
 						<Box
 							sx={{
 								position: "relative",
@@ -25,7 +26,7 @@ const Hero = () => {
 								height: "70vh",
 							}}>
 							<Image
-								src={item.image}
+								src={item.image.url}
 								alt={item.title}
 								style={{ objectFit: "cover" }}
 								fill
@@ -55,10 +56,10 @@ const Hero = () => {
 										sx={{ fontSize: { xs: "30px", md: "50px" } }}>
 										{item.title}
 									</Typography>
-                  <Typography
-                    color={'gray'}
+									<Typography
+										color={"gray"}
 										sx={{ fontSize: { xs: "20px", md: "25px" } }}>
-										{item.exerpt}
+										{item.excerpt}
 									</Typography>
 									<Box
 										sx={{
@@ -68,13 +69,18 @@ const Hero = () => {
 										}}>
 										<Avatar
 											alt={item.author.name}
-											src={item.author.image}
+											src={item.author.avatar.url}
 										/>
 										<Box>
 											<Typography>{item.author.name}</Typography>
 											<Box>
-												{format(new Date(), "dd MMM, yyyy")}{" "}
-												&#x2022; 10min read
+												{format(
+													new Date(item.publishedAt),
+													"dd MMM, yyyy"
+												)}{" "}
+												&#x2022;{" "}
+												{esTimateTimesRead(item.description.text)}
+												min read
 											</Box>
 										</Box>
 									</Box>
@@ -89,26 +95,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-const data = [
-	{
-		image: "https://media.graphassets.com/MxJZhmooRRuudoErkQ38",
-		title: "Technical SEO with Hygraph",
-		exerpt:
-			"Get started with your SEO implementation when using a Headless CMS",
-		author: {
-			name: "Samar Badriddinov",
-			image: "https://media.graphassets.com/DkfNqQNGRz2F4UFntKQx",
-		},
-	},
-	{
-		image: "https://media.graphassets.com/bh3K2NNtTHCN260Xfq9h",
-		title: "Union Types and Sortable Relations with Hygraph",
-		exerpt:
-			"Learn more about Polymorphic Relations and Sortable Relations with Hygraph",
-		author: {
-			name: "Samar Badriddinov",
-			image: "https://media.graphassets.com/DkfNqQNGRz2F4UFntKQx",
-		},
-	},
-];

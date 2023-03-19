@@ -4,13 +4,17 @@ import Image from "next/image";
 import React from "react";
 import { format } from "date-fns";
 import { Avatar, Divider } from "@mui/material";
+import { ContentBlog } from "./contentProps";
+import { esTimateTimesRead } from "src/helpers/colculateReadtime";
 
-const Content = () => {
+const Content = ({ blogs }: ContentBlog) => {
+	
+
 	return (
 		<Box width={{ xs: "100%", md: "70%" }}>
-			{data.map((data) => (
+			{blogs.map((data) => (
 				<Box
-					key={data.image}
+					key={data.id}
 					sx={{
 						backgroundColor: "rgba(0,0,0,0.5)",
 						padding: "20px",
@@ -23,7 +27,7 @@ const Content = () => {
 						width={"100%"}
 						height={{ xs: "30vh", md: " 50vh" }}>
 						<Image
-							src={data.image}
+							src={data.image.url}
 							alt={data.title}
 							fill
 							style={{ objectFit: "cover", borderRadius: "8px" }}
@@ -33,7 +37,7 @@ const Content = () => {
 						{data.title}
 					</Typography>
 					<Typography variant="body1" color={"gray"}>
-						{data.exerpt}
+						{data.excerpt}
 					</Typography>
 					<Divider sx={{ marginTop: "30px" }} />
 					<Box
@@ -42,11 +46,15 @@ const Content = () => {
 							gap: "10px",
 							marginTop: "20px",
 						}}>
-						<Avatar alt={data.author.name} src={data.author.image} />
+						<Avatar
+							alt={data.author.name}
+							src={data?.author.avatar?.url}
+						/>
 						<Box>
 							<Typography>{data.author.name}</Typography>
 							<Box color={"gray"}>
-								{format(new Date(), "dd MMM, yyyy")} &#x2022; 10min read
+								{format(new Date(data.publishedAt), "dd MMM, yyyy")}{" "}
+								&#x2022; {esTimateTimesRead(data.description.text)}min read
 							</Box>
 						</Box>
 					</Box>
