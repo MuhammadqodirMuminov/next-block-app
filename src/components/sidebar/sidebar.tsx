@@ -26,6 +26,9 @@ const Sidebar = ({ lastBlog, categories }: SidebarProps) => {
 						{categories.map((item) => (
 							<Fragment key={item.id}>
 								<Button
+									onClick={() =>
+										router.push(`/categories/${item.slug}`)
+									}
 									sx={{
 										height: "50px",
 										marginTop: "20px",

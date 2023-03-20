@@ -15,7 +15,7 @@ export const BlogService = {
 					id
 					updatedAt
 					publishedAt
-          createdAtw
+					createdAt
 					category {
 						... on Category {
 							id
@@ -95,7 +95,7 @@ export const BlogService = {
 					title
 					description {
 						text
-            html
+						html
 					}
 					createdAt
 					image {
@@ -116,5 +116,49 @@ export const BlogService = {
 			slug,
 		});
 		return result.blog;
+	},
+
+	async getCategoryDetail(slug: string) {
+		const query = gql`
+			query categoryDetail($slug: String = "mobile-programming") {
+				categories(where: { slug: $slug }) {
+					blogs {
+            id
+            title
+						createdAt
+						publishedAt
+						author {
+							name
+							avatar {
+								url
+							}
+						}
+						description {
+							text
+							html
+						}
+						excerpt
+						image {
+							url
+						}
+					}
+				}
+			}
+		`;
+
+		const result = await request<{ categories: [{ blogs: BlogType[] }] }>(
+			graphQlApi,
+			query,
+			{
+				slug,
+			}
+		);
+
+		const res = result.categories.map((category) => {
+			const value = Object.values(category);
+			return value;
+		});
+
+		return res;
 	},
 };

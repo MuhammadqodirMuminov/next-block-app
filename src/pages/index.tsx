@@ -52,6 +52,6 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
 
 interface HomeProps {
 	blogs: BlogType[];
-	lastBlog: BlogType[];w
+	lastBlog: BlogType[];
 	categories: Categorytype[];
 }
