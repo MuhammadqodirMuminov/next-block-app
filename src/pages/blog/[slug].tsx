@@ -9,21 +9,13 @@ import Layout from "src/layout/layout";
 import { BlogService } from "src/services/blog.service";
 import { format } from "date-fns";
 import { esTimateTimesRead } from "../../helpers/colculateReadtime";
-import Head from "next/head";
+
+import SEO from "src/layout/seo/seo";
 
 const Detailpage = ({ blog, lastBlog, categories }: Detailtype) => {
 	return (
-		<>
+		<SEO metaTitle={`Block | ${blog.title}`}>
 			<Layout>
-				<Head>
-					<title>Block | Content</title>
-					<meta name="description" content="Block aplication" />
-					<meta
-						name="viewport"
-						content="width=device-width, initial-scale=1"
-					/>
-					<link rel="icon" href="/favicon.ico" />
-				</Head>
 				<Box
 					sx={{
 						display: "flex",
@@ -91,7 +83,7 @@ const Detailpage = ({ blog, lastBlog, categories }: Detailtype) => {
 					<Sidebar lastBlog={lastBlog} categories={categories} />
 				</Box>
 			</Layout>
-		</>
+		</SEO>
 	);
 };
 

@@ -6,35 +6,32 @@ import Layout from "src/layout/layout";
 import { BlogService } from "src/services/blog.service";
 import { Box } from "@mui/material";
 import { Content, Sidebar } from "src/components";
-import Head from "next/head";
+import SEO from "src/layout/seo/seo";
+import { useRouter } from "next/router";
 
 const CategoryDetail = ({
 	blogs,
 	categories,
 	lastBlog,
 }: CategoryDetailtype) => {
+
+  const router = useRouter()
+
 	return (
-		<Layout>
-			<Head>
-				<title>Block | Category</title>
-				<meta name="description" content="Block aplication" />
-				<meta
-					name="viewport"
-					content="width=device-width, initial-scale=1"
-				/>
-				<link rel="icon" href="/favicon.ico" />
-			</Head>
-			<Box
-				sx={{
-					display: "flex",
-					flexDirection: { xs: "column", md: "row" },
-					padding: "20px",
-					gap: "20px",
-				}}>
-				<Sidebar lastBlog={lastBlog} categories={categories} />
-				<Content blogs={blogs} />
-			</Box>
-		</Layout>
+		<SEO metaTitle={`Block | ${router.query.slug}`}>
+			<Layout>
+				<Box
+					sx={{
+						display: "flex",
+						flexDirection: { xs: "column", md: "row" },
+						padding: "20px",
+						gap: "20px",
+					}}>
+					<Sidebar lastBlog={lastBlog} categories={categories} />
+					<Content blogs={blogs} />
+				</Box>
+			</Layout>
+		</SEO>
 	);
 };
 

@@ -4,22 +4,25 @@ import React from "react";
 import { Content } from "src/components";
 import { BlogType } from "src/interfaces/blogs.props";
 import Layout from "src/layout/layout";
+import SEO from "src/layout/seo/seo";
 import { BlogService } from "src/services/blog.service";
 
 const Blog = ({ blogs }: BlogPageType) => {
 	return (
-		<Layout>
-			<Box
-				sx={{
-					display: "flex",
-					flexDirection: { xs: "column", md: "row" },
-					padding: "20px",
-          gap: "20px",
-          justifyContent: "center",
-				}}>
-				<Content blogs={blogs} />
-			</Box>
-		</Layout>
+		<SEO metaTitle="Block | all-blocks">
+			<Layout>
+				<Box
+					sx={{
+						display: "flex",
+						flexDirection: { xs: "column", md: "row" },
+						padding: "20px",
+						gap: "20px",
+						justifyContent: "center",
+					}}>
+					<Content blogs={blogs} />
+				</Box>
+			</Layout>
+		</SEO>
 	);
 };
 
