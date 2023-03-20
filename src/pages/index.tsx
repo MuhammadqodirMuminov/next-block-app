@@ -38,8 +38,8 @@ export default function Home({ blogs, lastBlog, categories }: HomeProps) {
 
 export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
 	const blogs = await BlogService.getAllBlogs();
-	const lastBlog = await BlogService.getLatestBlog();
 	const categories = await BlogService.Category();
+	const lastBlog = await BlogService.getLatestBlog();
 
 	return {
 		props: {
@@ -52,6 +52,6 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
 
 interface HomeProps {
 	blogs: BlogType[];
-	lastBlog: BlogType[];
+	lastBlog: BlogType[];w
 	categories: Categorytype[];
 }

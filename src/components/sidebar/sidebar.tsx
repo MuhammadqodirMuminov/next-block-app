@@ -1,11 +1,12 @@
 import { Avatar, Box, Button, Divider, Typography } from "@mui/material";
 import Image from "next/image";
 import React, { Fragment } from "react";
-import { navItems } from "src/config/constants";
 import { format } from "date-fns";
 import { SidebarProps } from "./sidebar.props";
+import { useRouter } from "next/router";
 
 const Sidebar = ({ lastBlog, categories }: SidebarProps) => {
+	const router = useRouter();
 	return (
 		<Box width={{ xs: "100%", md: "30%" }}>
 			<Box
@@ -51,7 +52,11 @@ const Sidebar = ({ lastBlog, categories }: SidebarProps) => {
 							marginTop: "20px",
 						}}>
 						{lastBlog.map((item) => (
-							<Box key={item.title} marginTop={"20px"}>
+							<Box
+								key={item.title}
+								marginTop={"20px"}
+								sx={{ cursor: "pointerw" }}
+								onClick={() => router.push(`/blog/${item.slug}`)}>
 								<Box
 									sx={{
 										display: "flex",
@@ -87,10 +92,7 @@ const Sidebar = ({ lastBlog, categories }: SidebarProps) => {
 													{item.author.name}
 												</Typography>
 												<Box sx={{ opacity: ".6" }}>
-													{format(
-														new Date(item.publishedAt),
-														"dd MMM, yyyy"
-													)}
+													{format(new Date(), "dd MMM, yyyy")}
 												</Box>
 											</Box>
 										</Box>

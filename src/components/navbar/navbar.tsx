@@ -15,6 +15,7 @@ import ListItem from "@mui/material/ListItem";
 import List from "@mui/material/List";
 import CloseIcon from "@mui/icons-material/Close";
 import AdjustIcon from "@mui/icons-material/Adjust";
+import { useRouter } from "next/router";
 
 interface Props {
 	window?: () => Window;
@@ -22,6 +23,7 @@ interface Props {
 
 const Navbar = ({ window }: Props) => {
 	const [mobileOpen, setMobileOpen] = useState(false);
+	const router = useRouter();
 
 	const handleDrawerToggle = () => {
 		setMobileOpen((prevState) => !prevState);
@@ -46,11 +48,13 @@ const Navbar = ({ window }: Props) => {
 						display: "flex",
 						alignItems: "center",
 						gap: "5px",
-					}}>
+						cursor: "pointer",
+					}}
+					onClick={() => router.push("/")}>
 					<AdjustIcon />
 					<Typography variant="h6">Sammi</Typography>
 				</Box>
-				
+
 				<CloseIcon sx={{ cursor: "pointer" }} />
 			</Box>
 
@@ -72,7 +76,9 @@ const Navbar = ({ window }: Props) => {
 
 	return (
 		<Box height={"10vh"} sx={{ display: "flex" }}>
-			<AppBar sx={{ height: "10vh",backgroundColor: "#141414" }} component="nav">
+			<AppBar
+				sx={{ height: "10vh", backgroundColor: "#141414" }}
+				component="nav">
 				<Toolbar sx={{ height: "10vh" }}>
 					<IconButton
 						color="inherit"
@@ -85,12 +91,14 @@ const Navbar = ({ window }: Props) => {
 
 					<Box
 						sx={{
+							cursor: "pointer",
 							my: 2,
 							alignItems: "center",
 							gap: "5px",
 							flexGrow: 1,
 							display: { xs: "none", sm: "flex" },
-						}}>
+						}}
+						onClick={() => router.push("/")}>
 						<AdjustIcon />
 						<Typography variant="h6" component="div">
 							Sammi

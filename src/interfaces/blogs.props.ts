@@ -4,7 +4,8 @@ export interface BlogType {
 	excerpt: string;
 	id: string;
 	updatedAt: string;
-	publishedAt: string;
+  createdAt: string;
+  publishedAt: string;
 	category: {
 		Category: {
 			id: string;
@@ -23,5 +24,6 @@ export interface BlogType {
 	};
 	description: {
 		text: string;
+		html: string;
 	};
 }

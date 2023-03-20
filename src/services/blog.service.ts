@@ -15,6 +15,7 @@ export const BlogService = {
 					id
 					updatedAt
 					publishedAt
+          createdAtw
 					category {
 						... on Category {
 							id
@@ -83,5 +84,37 @@ export const BlogService = {
 			quary
 		);
 		return result.categories;
+	},
+
+	async getDeatilBlog(slug: string) {
+		const query = gql`
+			query getDetail($slug: String!) {
+				blog(where: { slug: $slug }) {
+					id
+					slug
+					title
+					description {
+						text
+            html
+					}
+					createdAt
+					image {
+						url
+					}
+					excerpt
+					author {
+						name
+						avatar {
+							url
+						}
+					}
+				}
+			}
+		`;
+
+		const result = await request<{ blog: BlogType }>(graphQlApi, query, {
+			slug,
+		});
+		return result.blog;
 	},
 };

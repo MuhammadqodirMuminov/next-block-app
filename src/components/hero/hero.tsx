@@ -6,10 +6,12 @@ import "react-multi-carousel/lib/styles.css";
 import { format } from "date-fns";
 import { HeroProps } from "./hero.props";
 import { esTimateTimesRead } from "src/helpers/colculateReadtime";
+import { useRouter } from "next/router";
 
 const Hero = ({ blogs }: HeroProps) => {
+	const router = useRouter();
 	return (
-		<Box width={"100%"} height={"70vh"} sx={{ backgroundColor: "red" }}>
+		<Box width={"100%"} height={"70vh"}>
 			<Carousel
 				responsive={{
 					mobile: {
@@ -18,12 +20,15 @@ const Hero = ({ blogs }: HeroProps) => {
 					},
 				}}>
 				{blogs.map((item) => (
-					<Box key={item.id}>
+					<Box
+						key={item.id}
+						onClick={() => router.push(`blog/${item.slug}`)}>
 						<Box
 							sx={{
 								position: "relative",
 								width: "100%",
 								height: "70vh",
+								cursor: "pointer",
 							}}>
 							<Image
 								src={item.image.url}
@@ -75,7 +80,7 @@ const Hero = ({ blogs }: HeroProps) => {
 											<Typography>{item.author.name}</Typography>
 											<Box>
 												{format(
-													new Date(item.publishedAt),
+													new Date(item.createdAt),
 													"dd MMM, yyyy"
 												)}{" "}
 												&#x2022;{" "}

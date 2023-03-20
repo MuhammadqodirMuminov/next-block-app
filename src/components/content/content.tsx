@@ -6,9 +6,10 @@ import { format } from "date-fns";
 import { Avatar, Divider } from "@mui/material";
 import { ContentBlog } from "./contentProps";
 import { esTimateTimesRead } from "src/helpers/colculateReadtime";
+import { useRouter } from "next/router";
 
 const Content = ({ blogs }: ContentBlog) => {
-	
+	const router = useRouter();
 
 	return (
 		<Box width={{ xs: "100%", md: "70%" }}>
@@ -21,7 +22,9 @@ const Content = ({ blogs }: ContentBlog) => {
 						margin: "20px",
 						borderRadius: "8px",
 						boxShadow: "0px 8px 16px rgba(255,255,255,0.1)",
-					}}>
+						cursor: "pointer",
+					}}
+					onClick={() => router.push(`/blog/${data.slug}`)}>
 					<Box
 						position={"relative"}
 						width={"100%"}
@@ -53,8 +56,9 @@ const Content = ({ blogs }: ContentBlog) => {
 						<Box>
 							<Typography>{data.author.name}</Typography>
 							<Box color={"gray"}>
-								{format(new Date(data.publishedAt), "dd MMM, yyyy")}{" "}
-								&#x2022; {esTimateTimesRead(data.description.text)}min read
+								{format(new Date(data.createdAt), "dd MMM, yyyy")}{" "}
+								&#x2022; {esTimateTimesRead(data.description.text)}min
+								read
 							</Box>
 						</Box>
 					</Box>
