@@ -7,13 +7,14 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 const Footer = () => {
 	return (
 		<Box
-			padding={"20px"}
+			padding={"24px"}
 			sx={{
 				display: "flex",
 				justifyContent: "space-between",
 				alignItems: "center",
 				backgroundColor: "#141414",
 				color: "white",
+				borderTop: "1px solid rgba(255, 255, 255, 0.7)",
 			}}>
 			<Typography>
 				© {format(new Date(), "yyyy")} MRX. All Right Reserved.

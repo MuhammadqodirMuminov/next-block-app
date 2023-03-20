@@ -51,8 +51,8 @@ const Navbar = ({ window }: Props) => {
 						cursor: "pointer",
 					}}
 					onClick={() => router.push("/")}>
-					<AdjustIcon />
-					<Typography variant="h6">Sammi</Typography>
+					<AdjustIcon sx={{ width: "48px", height: "48px" }} />
+					<Typography variant="h4">IT-blogs</Typography>
 				</Box>
 
 				<CloseIcon sx={{ cursor: "pointer" }} />
@@ -61,7 +61,10 @@ const Navbar = ({ window }: Props) => {
 			<Divider />
 			<List>
 				{navItems.map((item) => (
-					<ListItem key={item.route} disablePadding>
+					<ListItem
+						onClick={() => router.push(item.route)}
+						key={item.route}
+						disablePadding>
 						<ListItemButton sx={{ textAlign: "center" }}>
 							<ListItemText primary={item.label} />
 						</ListItemButton>
@@ -86,7 +89,7 @@ const Navbar = ({ window }: Props) => {
 						edge="start"
 						onClick={handleDrawerToggle}
 						sx={{ mr: 2, display: { sm: "none" } }}>
-						<MenuIcon />
+						<MenuIcon sx={{ width: "30px", height: "30px" }} />
 					</IconButton>
 
 					<Box
@@ -99,9 +102,9 @@ const Navbar = ({ window }: Props) => {
 							display: { xs: "none", sm: "flex" },
 						}}
 						onClick={() => router.push("/")}>
-						<AdjustIcon />
-						<Typography variant="h6" component="div">
-							Sammi
+						<AdjustIcon sx={{ width: "48px", height: "48px" }} />
+						<Typography variant="h4" component="div">
+							IT-blogs
 						</Typography>
 					</Box>
 
